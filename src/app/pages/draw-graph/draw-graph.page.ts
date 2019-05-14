@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import cytoscape from 'cytoscape';
 import edgehandles from 'cytoscape-edgehandles';
 cytoscape.use(edgehandles);
@@ -12,7 +13,7 @@ cytoscape.use(edgehandles);
 export class DrawGraphPage implements OnInit {
     cy;
 
-    constructor(private modalController: ModalController) { }
+    constructor(private modalController: ModalController, public toastController: ToastController) { }
 
     goHome() {
         this.modalController.dismiss();
@@ -23,6 +24,14 @@ export class DrawGraphPage implements OnInit {
 
     ionViewDidEnter() {
         this.setupGraph();
+    }
+
+    async presentToast(message: string) {
+        const toast = await this.toastController.create({
+            message: message,
+            duration: 1000
+        });
+        toast.present();
     }
 
     setupGraph() {
@@ -135,6 +144,16 @@ export class DrawGraphPage implements OnInit {
     }
 
     removeNode() {
+        let noneSelectedMsg = "Please select a node or edge.";
+        let deletedMsg = "Element removed successfully.";
+        let element = this.cy.$(':selected');
+
+        if (element.length == 0) {
+            this.presentToast(noneSelectedMsg);
+        } else {
+            element.remove();
+            this.presentToast(deletedMsg);
+        }
     }
 
 }
