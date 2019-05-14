@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+
+import { DrawGraphPage } from "../pages/draw-graph/draw-graph.page"
 
 @Component({
   selector: 'app-home',
@@ -6,6 +9,8 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+
+    constructor(public modalController: ModalController) {}
 
     methods = [
         {
@@ -30,12 +35,21 @@ export class HomePage {
         },
         {
             name: "Ruta Crítica",
-            img: "../assets/imgs/ruta_critica.jpg"
+            img: "../assets/imgs/ruta_critica.jpg",
+            page: DrawGraphPage
         }
     ];
 
     openMethod(method) {
         console.log(method);
+        this.presentModal(method.page);
     }
 
+    async presentModal(page) {
+        const modal = await this.modalController.create({
+            component: page
+        });
+
+        await modal.present();
+    }
 }
