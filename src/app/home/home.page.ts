@@ -7,4 +7,35 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
+    methods = [
+        {
+            name: "Método Simplex",
+            img: "../assets/imgs/simplex.jpg"
+        },
+        {
+            name: "Método Hungaro",
+            img: "../assets/imgs/hungaro.jpg"
+        },
+        {
+            name: "Esquina Noroeste",
+            img: "../assets/imgs/esquina_noroeste.png"
+        },
+        {
+            name: "Ruta más corta",
+            img: "../assets/imgs/ruta_corta.jpg"
+        },
+        {
+            name: "Árbol de Expansión Mínima",
+            img: "../assets/imgs/aem.jpg"
+        },
+        {
+            name: "Ruta Crítica",
+            img: "../assets/imgs/ruta_critica.jpg"
+        }
+    ];
+
+    openMethod(method) {
+        console.log(method);
+    }
+
 }
