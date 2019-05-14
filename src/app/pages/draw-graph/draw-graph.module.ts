@@ -10,9 +10,12 @@ import { DrawGraphPage } from './draw-graph.page';
 import { AddNodePage } from '../add-node/add-node.page';
 import { AddNodePageModule } from '../add-node/add-node.module';
 
+import { EdgeWeightComponent } from '../../components/edge-weight/edge-weight.component';
+
 @NgModule({
     entryComponents: [
-        AddNodePage
+        AddNodePage,
+        EdgeWeightComponent
     ],
     imports: [
         CommonModule,
@@ -20,6 +23,6 @@ import { AddNodePageModule } from '../add-node/add-node.module';
         IonicModule,
         AddNodePageModule
     ],
-    declarations: [DrawGraphPage]
+    declarations: [DrawGraphPage, EdgeWeightComponent]
 })
 export class DrawGraphPageModule { }

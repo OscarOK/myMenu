@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
+import { PopoverController } from '@ionic/angular';
 import cytoscape from 'cytoscape';
 import edgehandles from 'cytoscape-edgehandles';
 cytoscape.use(edgehandles);
 
 import { AddNodePage } from '../add-node/add-node.page';
+import { EdgeWeightComponent } from '../../components/edge-weight/edge-weight.component';
 
 @Component({
     selector: 'app-draw-graph',
@@ -15,7 +17,7 @@ import { AddNodePage } from '../add-node/add-node.page';
 export class DrawGraphPage implements OnInit {
     cy;
 
-    constructor(private modalController: ModalController, public toastController: ToastController) { }
+    constructor(private modalController: ModalController, public toastController: ToastController, public popoverController: PopoverController) { }
 
     goHome() {
         this.modalController.dismiss();
@@ -28,12 +30,22 @@ export class DrawGraphPage implements OnInit {
         this.setupGraph();
     }
 
+    async presentEdgeWeightPopover(ev: any) {
+        const popover = await this.popoverController.create({
+            component: EdgeWeightComponent,
+            event: ev,
+            translucent: true,
+            animated: true
+        });
+        return await popover.present();
+    }
+
     async presentToast(message: string) {
         const toast = await this.toastController.create({
             message: message,
             duration: 1000
         });
-        toast.present();
+        await toast.present();
     }
 
     setupGraph() {
@@ -127,7 +139,7 @@ export class DrawGraphPage implements OnInit {
                     { data: { id: 'g', name: 'George' } }
                 ],
                 edges: [
-                    { data: { source: 'j', target: 'e', label:15 } },
+                    { data: { source: 'j', target: 'e', label: 15 } },
                     { data: { source: 'j', target: 'k', label: 'DEMO1' } },
                     { data: { source: 'j', target: 'g', label: 'DEMO2' } },
                     { data: { source: 'e', target: 'j', label: 'demo2' } }
@@ -136,8 +148,8 @@ export class DrawGraphPage implements OnInit {
         });
 
         let trigger = {
-            complete: function( sourceNode, targetNode, addedEles ){
-                // TODO OPEN POPUP
+            complete: function(sourceNode, targetNode, addedEles) {
+                this.presentEdgeWeightPopover("asd");
             }
         };
 
@@ -159,7 +171,6 @@ export class DrawGraphPage implements OnInit {
             this.cy.fit();
             let nodes = this.cy.nodes();
             let edges = this.cy.edges();
-
         }
     }
 
