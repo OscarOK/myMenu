@@ -55,6 +55,7 @@ export class DrawGraphPage implements OnInit {
                 {
                     selector: 'edge',
                     style: {
+                        'label': 'data(label)',
                         'curve-style': 'bezier',
                         'target-arrow-shape': 'triangle'
                     }
@@ -124,23 +125,27 @@ export class DrawGraphPage implements OnInit {
                     { data: { id: 'g', name: 'George' } }
                 ],
                 edges: [
-                    { data: { source: 'j', target: 'e' } },
-                    { data: { source: 'j', target: 'k' } },
-                    { data: { source: 'j', target: 'g' } },
-                    { data: { source: 'e', target: 'j' } },
-                    { data: { source: 'e', target: 'k' } },
-                    { data: { source: 'k', target: 'j' } },
-                    { data: { source: 'k', target: 'e' } },
-                    { data: { source: 'k', target: 'g' } },
-                    { data: { source: 'g', target: 'j' } }
+                    { data: { source: 'j', target: 'e', label:15 } },
+                    { data: { source: 'j', target: 'k', label: 'DEMO1' } },
+                    { data: { source: 'j', target: 'g', label: 'DEMO2' } },
+                    { data: { source: 'e', target: 'j', label: 'demo2' } }
                 ]
             }
         });
-        var eh = this.cy.edgehandles();
+
+        let trigger = {
+            complete: function( sourceNode, targetNode, addedEles ){
+                // TODO OPEN POPUP
+            }
+        };
+
+        var eh = this.cy.edgehandles(trigger);
     }
 
     addNode() {
+        // TODO OPEN MODAL
         console.log(this.cy);
+
     }
 
     removeNode() {
