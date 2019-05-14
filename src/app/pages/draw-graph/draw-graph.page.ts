@@ -5,6 +5,8 @@ import cytoscape from 'cytoscape';
 import edgehandles from 'cytoscape-edgehandles';
 cytoscape.use(edgehandles);
 
+import { AddNodePage } from '../add-node/add-node.page';
+
 @Component({
     selector: 'app-draw-graph',
     templateUrl: './draw-graph.page.html',
@@ -142,10 +144,23 @@ export class DrawGraphPage implements OnInit {
         var eh = this.cy.edgehandles(trigger);
     }
 
-    addNode() {
-        // TODO OPEN MODAL
-        console.log(this.cy);
+    async addNode() {
+        const modal = await this.modalController.create({
+            component: AddNodePage
+        });
 
+        await modal.present();
+
+        const nodeData = await modal.onDidDismiss();
+        console.log(nodeData);
+
+        if (nodeData.data != null) {
+            this.cy.add(nodeData);
+            this.cy.fit();
+            let nodes = this.cy.nodes();
+            let edges = this.cy.edges();
+
+        }
     }
 
     removeNode() {

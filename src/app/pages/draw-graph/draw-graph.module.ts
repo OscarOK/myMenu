@@ -7,12 +7,19 @@ import { IonicModule } from '@ionic/angular';
 
 import { DrawGraphPage } from './draw-graph.page';
 
+import { AddNodePage } from '../add-node/add-node.page';
+import { AddNodePageModule } from '../add-node/add-node.module';
+
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule
-  ],
-  declarations: [DrawGraphPage]
+    entryComponents: [
+        AddNodePage
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        AddNodePageModule
+    ],
+    declarations: [DrawGraphPage]
 })
-export class DrawGraphPageModule {}
+export class DrawGraphPageModule { }
