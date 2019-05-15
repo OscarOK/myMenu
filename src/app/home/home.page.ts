@@ -31,7 +31,8 @@ export class HomePage {
         },
         {
             name: "Árbol de Expansión Mínima",
-            img: "../assets/imgs/aem.jpg"
+            img: "../assets/imgs/aem.jpg",
+            page: DrawGraphPage
         },
         {
             name: "Ruta Crítica",

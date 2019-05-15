@@ -10,6 +10,16 @@
 <ion-content>
     <div id="cy"></div>
 
+    <ion-item>
+        <ion-label>Métodos</ion-label>
+        <ion-select multiple="false" interface = "popover">
+            <ion-select-option value = "RCorta">Ruta mas corta</ion-select-option>
+            <ion-select-option value = "MSATree">Arbol de expansion minima</ion-select-option>
+            <ion-select-option value = "RCritica">Ruta Crítica</ion-select-option>
+        </ion-select>
+    </ion-item>
+    
+
     <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
         <ion-fab-button>
             <ion-icon name="create"></ion-icon>
