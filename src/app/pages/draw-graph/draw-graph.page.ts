@@ -30,13 +30,22 @@ export class DrawGraphPage implements OnInit {
         this.setupGraph();
     }
 
-    async presentEdgeWeightPopover() {
+    async presentEdgeWeightPopover(edgeId: string) {
         const popover = await this.popoverController.create({
             component: EdgeWeightComponent,
             translucent: true,
             animated: true
         });
-        return await popover.present();
+
+        await popover.present();
+
+        const { data } = await popover.onDidDismiss();
+
+        let edge = this.cy.edges('[id = "' + edgeId + '"]');
+
+        edge.data("label", data.weight)
+        .data("weight", data.weight)
+        .data("id", edgeId + data.weight);
     }
 
     async presentToast(message: string) {
@@ -128,29 +137,18 @@ export class DrawGraphPage implements OnInit {
                         'opacity': 0
                     }
                 }
-            ],
-
-            elements: {
-                nodes: [
-                    { data: { id: 'j', name: 'Jerry' } },
-                    { data: { id: 'e', name: 'Elaine' } },
-                    { data: { id: 'k', name: 'Kramer' } },
-                    { data: { id: 'g', name: 'George' } }
-                ],
-                edges: [
-                    { data: { source: 'j', target: 'e', label: 15 } },
-                    { data: { source: 'j', target: 'k', label: 'DEMO1' } },
-                    { data: { source: 'j', target: 'g', label: 'DEMO2' } },
-                    { data: { source: 'e', target: 'j', label: 'demo2' } }
-                ]
-            }
+            ]
         });
 
         let out = this;
 
         let trigger = {
             complete: function(sourceNode, targetNode, addedEles) {
-                out.presentEdgeWeightPopover();
+                let sourceId = sourceNode._private.data.id;
+                let targetId = targetNode._private.data.id;
+                let edgeId = sourceId + "->" + targetId + ":";
+                addedEles["0"]._private.data.id = edgeId;
+                out.presentEdgeWeightPopover(edgeId);
             }
         };
 
@@ -169,7 +167,7 @@ export class DrawGraphPage implements OnInit {
 
         if (nodeData.data != null) {
             this.cy.add(nodeData);
-            this.cy.fit();
+            this.cy.center();
             let nodes = this.cy.nodes();
             let edges = this.cy.edges();
         }
