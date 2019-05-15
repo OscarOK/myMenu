@@ -197,5 +197,23 @@ export class DrawGraphPage implements OnInit {
     solve() {
         alert("TODO");
     }
+    //Aqui nomas mandamos a llamar los metodos de los algoritmos y ya en otro lado los definimos
+    //Todo sea por un código mas L I M P I O
+    optionHandler(option){
+        switch(option) {
+            case "RCorta": {
+               //statements;
+               break;
+            }
+            case "MSATree": {
+               //statements;
+               break;
+            }
+            case "RCritica":{
+                //statements;
+                break;
+            }
+        }
+    }
 
 }
