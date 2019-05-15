@@ -12,15 +12,15 @@
 
     <ion-item>
         <ion-label>Métodos</ion-label>
-        <ion-select multiple="false" interface = "popover">
-            <ion-select-option value = "RCorta">Ruta mas corta</ion-select-option>
-            <ion-select-option value = "MSATree">Arbol de expansion minima</ion-select-option>
-            <ion-select-option value = "RCritica">Ruta Crítica</ion-select-option>
+        <ion-select multiple="false" interface="popover">
+            <ion-select-option value="RCorta">Ruta mas corta</ion-select-option>
+            <ion-select-option value="MSATree">Arbol de expansion minima</ion-select-option>
+            <ion-select-option value="RCritica">Ruta Crítica</ion-select-option>
         </ion-select>
     </ion-item>
-    
 
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
+    <ion-fab class="extra-margin" vertical="bottom" horizontal="end" slot="fixed">
+
         <ion-fab-button>
             <ion-icon name="create"></ion-icon>
         </ion-fab-button>
@@ -32,6 +32,15 @@
             <ion-fab-button color="danger" (click)="removeNode()">
                 <ion-icon name="trash"></ion-icon>
             </ion-fab-button>
+            <ion-fab-button (click)="recenter()">
+                <ion-icon name="locate"></ion-icon>
+            </ion-fab-button>
         </ion-fab-list>
+    </ion-fab>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="dark" (click)="solve()">
+            <ion-icon name="play"></ion-icon>
+        </ion-fab-button>
     </ion-fab>
 </ion-content>

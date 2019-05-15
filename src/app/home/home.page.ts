@@ -26,17 +26,8 @@ export class HomePage {
             img: "../assets/imgs/esquina_noroeste.png"
         },
         {
-            name: "Ruta más corta",
-            img: "../assets/imgs/ruta_corta.jpg"
-        },
-        {
-            name: "Árbol de Expansión Mínima",
+            name: "Métodos Gráficos",
             img: "../assets/imgs/aem.jpg",
-            page: DrawGraphPage
-        },
-        {
-            name: "Ruta Crítica",
-            img: "../assets/imgs/ruta_critica.jpg",
             page: DrawGraphPage
         }
     ];

@@ -34,7 +34,8 @@ export class DrawGraphPage implements OnInit {
         const popover = await this.popoverController.create({
             component: EdgeWeightComponent,
             translucent: true,
-            animated: true
+            animated: true,
+            backdropDismiss: false
         });
 
         await popover.present();
@@ -43,9 +44,11 @@ export class DrawGraphPage implements OnInit {
 
         let edge = this.cy.edges('[id = "' + edgeId + '"]');
 
-        edge.data("label", data.weight)
-        .data("weight", data.weight)
-        .data("id", edgeId + data.weight);
+        if (data.weight !== undefined) {
+            edge.data("label", data.weight)
+                .data("weight", data.weight)
+                .data("id", edgeId + data.weight);
+        }
     }
 
     async presentToast(message: string) {
@@ -184,6 +187,15 @@ export class DrawGraphPage implements OnInit {
             element.remove();
             this.presentToast(deletedMsg);
         }
+    }
+
+    recenter() {
+        this.cy.center();
+        this.cy.fit();
+    }
+
+    solve() {
+        alert("TODO");
     }
 
 }
