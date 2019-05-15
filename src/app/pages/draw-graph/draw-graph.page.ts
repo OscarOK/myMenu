@@ -146,9 +146,11 @@ export class DrawGraphPage implements OnInit {
             }
         });
 
+        let out = this;
+
         let trigger = {
             complete: function(sourceNode, targetNode, addedEles) {
-                this.presentEdgeWeightPopover();
+                out.presentEdgeWeightPopover();
             }
         };
 
