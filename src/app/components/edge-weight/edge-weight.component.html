@@ -5,17 +5,9 @@
     Leave it empty for non value
 
     <ion-item>
-        <ion-input placeholder="Edge weight" type="number"></ion-input>
+        <ion-input placeholder="Edge weight" type="number" [(ngModel)]="edgeWeight"></ion-input>
     </ion-item>
 </ion-content>
 
-<ion-grid>
-    <ion-row>
-        <ion-col>
-            <ion-button fill="clear" expand="full">CANCEL</ion-button>
-        </ion-col>
-        <ion-col>
-            <ion-button fill="clear" expand="full">OK</ion-button>
-        </ion-col>
-    </ion-row>
-</ion-grid>
+
+<ion-button fill="clear" expand="full" (click)="ok()">OK</ion-button>

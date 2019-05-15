@@ -31,16 +31,13 @@ export class AddNodePage implements OnInit {
 
     sendNodeInfo() {
         let addNodeNameMsg = "Please add the name of the node";
-        let addNodeWeight = "Please add the weight of the node";
 
-        if (this.nodeName == undefined || this.nodeName.trimLeft().trimRight() == "") {
+        if (this.nodeName === undefined || this.nodeName.replace(/\s/g, "") === "") {
             this.presentToast(addNodeNameMsg);
-        } else if (this.nodeWeight == undefined) {
-            this.presentToast(addNodeWeight);
         } else {
             const data = {
-                id: this.nodeName.trimLeft().trimRight(),
-                name: this.nodeName,
+                id: this.nodeName.replace(/\s/g, ""),
+                name: this.nodeName.replace(/\s/g, ""),
                 data: { weight: +this.nodeWeight },
                 position: { x: 0, y: 0 }
             };
