@@ -30,10 +30,9 @@ export class DrawGraphPage implements OnInit {
         this.setupGraph();
     }
 
-    async presentEdgeWeightPopover(ev: any) {
+    async presentEdgeWeightPopover() {
         const popover = await this.popoverController.create({
             component: EdgeWeightComponent,
-            event: ev,
             translucent: true,
             animated: true
         });
@@ -149,7 +148,7 @@ export class DrawGraphPage implements OnInit {
 
         let trigger = {
             complete: function(sourceNode, targetNode, addedEles) {
-                this.presentEdgeWeightPopover("asd");
+                this.presentEdgeWeightPopover();
             }
         };
 
